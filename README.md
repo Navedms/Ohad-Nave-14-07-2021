@@ -13,17 +13,26 @@
 
 ## The app in pictures
 
-<div style="display:flex; flex-wrap: wrap; justify-content: space-between;">
-<img width="250" src="https://user-images.githubusercontent.com/56390807/126066169-82f1d026-686d-4917-852e-ea82e94f686e.jpeg">
-<img width="250" src="https://user-images.githubusercontent.com/56390807/126066170-0411b752-8c9e-4130-8aca-7c0d2ae051fd.jpeg">
-<img width="250" src="https://user-images.githubusercontent.com/56390807/126066172-c1b5ac2d-b3aa-4f39-9eec-d55ea797e7a1.jpeg">
-</div>
-<div style="display:flex; flex-wrap: wrap; justify-content: space-between;">
-<img style="margin: 30px;" width="250" src="https://user-images.githubusercontent.com/56390807/126066173-d07f35c5-bd00-44a4-b8c9-ded3714257f1.jpeg">
-<img style="margin: 30px;" width="250" src="https://user-images.githubusercontent.com/56390807/126066175-f4382886-db0f-4e8b-bb2f-7438c4a61b73.jpeg">
-<img style="margin: 30px;" width="250" src="https://user-images.githubusercontent.com/56390807/126066176-83f37015-fc68-461a-bf43-207d03d8dc14.jpeg">
-</div>
-<img width="250" src="https://user-images.githubusercontent.com/56390807/126066177-4455c09a-a825-4e1b-8c82-80e098e48b05.jpeg">
+
+
+<p align="center">The main screen (Tel Aviv and New York):</p><br>
+<p align="center"><img width="250" src="https://user-images.githubusercontent.com/56390807/126066169-82f1d026-686d-4917-852e-ea82e94f686e.jpeg"></p><br>
+<p align="center"><img width="250" src="https://user-images.githubusercontent.com/56390807/126066172-c1b5ac2d-b3aa-4f39-9eec-d55ea797e7a1.jpeg"></p><br><br>
+
+<p align="center">Fahrenheit:</p><br>
+<p align="center"><img style="margin: 30px;" width="250" src="https://user-images.githubusercontent.com/56390807/126066173-d07f35c5-bd00-44a4-b8c9-ded3714257f1.jpeg"></p><br><br>
+
+<p align="center">The location autocomplete component:</p><br>
+<p align="center"><img width="250" src="https://user-images.githubusercontent.com/56390807/126066170-0411b752-8c9e-4130-8aca-7c0d2ae051fd.jpeg"></p><br><br>
+
+<p align="center">Add to favorites message:</p><br>
+<p align="center"><img style="margin: 30px;" width="250" src="https://user-images.githubusercontent.com/56390807/126066175-f4382886-db0f-4e8b-bb2f-7438c4a61b73.jpeg"></p><br><br>
+
+<p align="center">The favorites screen:</p><br>
+<p align="center"><img style="margin: 30px;" width="250" src="https://user-images.githubusercontent.com/56390807/126066176-83f37015-fc68-461a-bf43-207d03d8dc14.jpeg"></p><br><br>
+
+<p align="center">Delete mode</p><br>
+<p align="center"><img width="250" src="https://user-images.githubusercontent.com/56390807/126066177-4455c09a-a825-4e1b-8c82-80e098e48b05.jpeg"></p><br><br>
 
 
 
