@@ -31,7 +31,7 @@
 <p align="center">The favorites screen:</p><br>
 <p align="center"><img style="margin: 30px;" width="250" src="https://user-images.githubusercontent.com/56390807/126066176-83f37015-fc68-461a-bf43-207d03d8dc14.jpeg"></p><br><br>
 
-<p align="center">Delete mode</p><br>
+<p align="center">Delete mode:</p><br>
 <p align="center"><img width="250" src="https://user-images.githubusercontent.com/56390807/126066177-4455c09a-a825-4e1b-8c82-80e098e48b05.jpeg"></p><br><br>
 
 
