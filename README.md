@@ -13,7 +13,20 @@
 
 ## The app in pictures
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+
+![1pic](https://user-images.githubusercontent.com/56390807/126066169-82f1d026-686d-4917-852e-ea82e94f686e.jpeg)
+
+![2pic](https://user-images.githubusercontent.com/56390807/126066170-0411b752-8c9e-4130-8aca-7c0d2ae051fd.jpeg)
+
+![3pic](https://user-images.githubusercontent.com/56390807/126066172-c1b5ac2d-b3aa-4f39-9eec-d55ea797e7a1.jpeg)
+
+![4pic](https://user-images.githubusercontent.com/56390807/126066173-d07f35c5-bd00-44a4-b8c9-ded3714257f1.jpeg)
+
+![5pic](https://user-images.githubusercontent.com/56390807/126066175-f4382886-db0f-4e8b-bb2f-7438c4a61b73.jpeg)
+
+![6pic](https://user-images.githubusercontent.com/56390807/126066176-83f37015-fc68-461a-bf43-207d03d8dc14.jpeg)
+
+![7pic](https://user-images.githubusercontent.com/56390807/126066177-4455c09a-a825-4e1b-8c82-80e098e48b05.jpeg)
 
 
 
