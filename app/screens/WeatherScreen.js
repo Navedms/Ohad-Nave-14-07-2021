@@ -3,6 +3,8 @@ import { View, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useIsFocused } from "@react-navigation/native";
 import dayjs from "dayjs";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import Activityindicator from '../components/Activityindicator';
 import TouchScreen from '../components/TouchScreen';
@@ -14,30 +16,55 @@ import showRemove from '../components/showRemove';
 import showAdd from '../components/showAdd';
 import FiveDaysForecast from '../components/FiveDaysForecast';
 
-import locationAutocomplete from '../api/locationAutocomplete';
-import currentWeatherApi from '../api/currentWeather';
-import fiveDaysApi from '../api/fiveDays';
+import {
+    AutoCompleteApiAction,
+    WeatherApiAction,
+    FiveDaysApiAction,
+} from '../actions';
 import api from '../api/configAPI';
+
 import useAutoComp from '../hooks/useAutoComp';
 import useCurrent from '../hooks/useCurrent';
-import useFiveDays from '../hooks/useFiveDays';
+
 import defaultStyle from "../config/styles";
 import favoritesStore from '../utility/favoritesStore';
 
 
-function WeatherScreen({ navigation, route }) {
-    const current = route.params;
-    const { data, autoError, handleSearchChange, search, handleSelectCity, autoCompVisible, canceAutoCompMode } = useAutoComp(locationAutocomplete.get);
-    const { currentKey, setCurrentKey, currentData, error, loading, request: handleShowCurrent, buttonDisabledFavorit, setFavoritIconColor, favoritIconColor, unit, setUnit } = useCurrent(currentWeatherApi.get);
-    const { fiveData, fiveError, request: handleShowFiveDays } = useFiveDays(fiveDaysApi.get);
-    const isFocused = useIsFocused();
 
+
+function WeatherScreen({ navigation, route, autoCompleteProp, currentWeatherProp, fiveDaysProp, ...otherProps }) {
+
+    const current = route.params;
+    const currentData = currentWeatherProp === null ? [] : currentWeatherProp.currentWeatherProp;
+    const data = autoCompleteProp === null ? [] : autoCompleteProp.autoCompleteProp;
+    const fiveData = fiveDaysProp === null ? [] : fiveDaysProp.fiveDaysProp;
+
+    const {
+        search,
+        setSearch,
+        handleSelectCity,
+        autoCompVisible,
+        setAutoCompVisible,
+        canceAutoCompMode
+    } = useAutoComp();
+
+    const {
+        currentKey,
+        setCurrentKey,
+        loading,
+        setLoading,
+        setFavoritIconColor,
+        favoritIconColor,
+        unit,
+        setUnit
+    } = useCurrent();
+
+    const isFocused = useIsFocused();
 
 
     useEffect(() => {
         const isCurrent = current === undefined ? api.defaultItem : current;
         handleSelectCityAndShowCurrent(isCurrent);
-        handleFavotirIconColor(isCurrent.Key);
     }, [navigation, isFocused]);
 
     const handleFavotirIconColor = async (currentKey) => {
@@ -54,10 +81,28 @@ function WeatherScreen({ navigation, route }) {
     const handleSelectCityAndShowCurrent = (item) => {
         handleSelectCity(item);
         setCurrentKey(item.Key);
-        handleShowCurrent(item.Key, true);
         handleFavotirIconColor(item.Key);
         handleShowFiveDays(item.Key, unitLogic(unit));
+
+        setLoading(true);
+        otherProps.WeatherApiAction(item.Key, true);
+        setLoading(false);
     }
+
+    const handleShowFiveDays = (item, unit) => {
+        setLoading(true);
+        otherProps.FiveDaysApiAction(item, unit);
+        setLoading(false);
+    }
+
+    const handleSearchChange = (text) => {
+        setSearch(text);
+        if (!text) { return setAutoCompVisible(false); }
+        otherProps.AutoCompleteApiAction(text);
+        if (!data || data.data === 'error') { return setAutoCompVisible(false); }
+        if (data) { setAutoCompVisible(true); }
+    }
+
     const unitLogic = () => {
         return unit === 'Metric' ? true : false;
     }
@@ -103,7 +148,6 @@ function WeatherScreen({ navigation, route }) {
         }
     };
 
-
     return (
         <TouchScreen style={styles.container} onPress={() => canceAutoCompMode()}>
             <Activityindicator visible={loading} />
@@ -122,14 +166,14 @@ function WeatherScreen({ navigation, route }) {
                             />
                         </View>}
                 </View>
-                {currentData.length > 0 && <TouchableOpacity style={styles.favorit} disabled={buttonDisabledFavorit} onPress={handleAddRemoveFavorit}>
+                {currentData && currentData.length > 0 && <TouchableOpacity style={styles.favorit} onPress={handleAddRemoveFavorit}>
                     <MaterialCommunityIcons name="heart" size={36} color={favoritIconColor} />
                 </TouchableOpacity>}
             </View>
-            {error && <NoResults title="CAN'T DISPLAY CURRENT WEATHER" text="Sorry we had a server issue. Please try again." iconName='alert' flex={false} />}
-            {currentData.length > 0 && <CurrentWeather city={search} data={currentData[0]} onPress={(unit) => handleOnPressUnitChangeFiveDays(unit)} unit={unit} setUnit={setUnit} />}
+            {!currentData || currentData.length === 0 || currentData.data === 'error' && <NoResults title="CAN'T DISPLAY CURRENT WEATHER" text="Sorry we had a server issue. Please try again." iconName='alert' flex={false} />}
+            {currentData && currentData.length > 0 && <CurrentWeather city={search} data={currentData[0]} onPress={(unit) => handleOnPressUnitChangeFiveDays(unit)} unit={unit} setUnit={setUnit} />}
             <View style={styles.fiveDaysContainer}>
-                {fiveData.length > 0 && <FlatList
+                {fiveData && fiveData.length > 0 && <FlatList
                     data={fiveData}
                     showsVerticalScrollIndicator={true}
                     keyExtractor={(item) => item.EpochDate.toString()}
@@ -179,4 +223,17 @@ const styles = StyleSheet.create({
     }
 });
 
-export default WeatherScreen;
+function mapStateToProps(state) {
+    return {
+        currentWeatherProp: state.currentWeatherProp,
+        autoCompleteProp: state.autoCompleteProp,
+        fiveDaysProp: state.fiveDaysProp
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ WeatherApiAction, AutoCompleteApiAction, FiveDaysApiAction }, dispatch)
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(WeatherScreen);

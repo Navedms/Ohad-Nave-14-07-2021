@@ -4,6 +4,8 @@ import { MaterialCommunityIcons, FontAwesome5 } from "@expo/vector-icons";
 
 import WeatherScreen from '../screens/WeatherScreen';
 import FavoritesScreen from '../screens/FavoritesScreen';
+import routes from './routes';
+import { RECORDING_OPTION_IOS_OUTPUT_FORMAT_AES3 } from 'expo-av/build/Audio';
 
 
 const Tab = createBottomTabNavigator();
@@ -12,7 +14,7 @@ const AppNavigator = () => {
     return (
         <Tab.Navigator>
             <Tab.Screen
-                name="Main"
+                name={routes.MAIN}
                 component={WeatherScreen}
                 options={{
                     tabBarIcon: ({ size, color }) =>
@@ -22,7 +24,7 @@ const AppNavigator = () => {
                 }}
             />
             <Tab.Screen
-                name="Favorites"
+                name={routes.FAVORITES}
                 component={FavoritesScreen}
                 options={{
                     tabBarIcon: ({ size, color }) =>

@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
         padding: 20,
         justifyContent: 'flex-end',
         alignItems: 'center',
+        zIndex: -1,
     },
     title: {
         paddingTop: 10,

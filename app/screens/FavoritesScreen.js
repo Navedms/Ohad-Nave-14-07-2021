@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { FlatList } from 'react-native';
 import { useIsFocused } from "@react-navigation/native";
 
-import favoritesStore from '../utility/favoritesStore';
 import Activityindicator from '../components/Activityindicator';
 import TouchScreen from '../components/TouchScreen';
 import NoResults from '../components/NoResults';
 import DeleteItem from '../components/deleteItem';
 import FavoritItem from '../components/FavoritItem';
 import defaultStyle from "../config/styles";
+import favoritesStore from '../utility/favoritesStore';
 import logger from '../utility/logger';
+import routes from '../navigation/routes';
 
 function FavoritesScreen({ navigation }) {
     const [loading, setLoading] = useState(false);
@@ -54,7 +55,7 @@ function FavoritesScreen({ navigation }) {
             setFavoritesList(resetTheList);
 
         } else {
-            setTimeout(() => { navigation.navigate("Main", item); }, 200);
+            setTimeout(() => { navigation.navigate(routes.MAIN, item); }, 200);
         }
     }
 

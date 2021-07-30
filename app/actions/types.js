@@ -1,0 +1,5 @@
+export default Object.freeze({
+    GET_AUTO_COMPLETE: 'GET_AUTO_COMPLETE',
+    GET_CURRENT_WEATHER: 'GET_CURRENT_WEATHER',
+    GET_FIVE_DAYS: 'GET_FIVE_DAYS'
+})
